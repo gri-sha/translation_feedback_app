@@ -1,0 +1,109 @@
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thead {
+  display: contents;
+}
+
+.translationHeader {
+  display: none;
+}
+
+.tr {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+}
+
+.td {
+  padding: 8px;
+}
+
+.option {
+  width: 70%;
+}
+
+.rank {
+  width: 20%;
+  text-align: center;
+}
+
+.discard {
+  width: 10%;
+  text-align: center;
+}
+
+.naming {
+  display: none;
+}
+
+.indicator {
+  display: contents;
+  padding: 8px;
+}
+
+.checkbox {
+  transition: none;
+}
+
+.resetButton {
+  font-family: "Victor Mono";
+  all: unset;
+  cursor: "pointer";
+  text-decoration: underline;
+}
+
+.resetButton:hover {
+  font-weight: bolder;
+}
+
+/* Column styles */
+@media (max-width: 700px) {
+  .thead {
+    display: none;
+    margin-bottom: 8px;
+  }
+
+  .translationHeader {
+    display: contents;
+  }
+
+  .tr {
+    display: block;
+  }
+
+  .td {
+    display: block;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .rank,
+  .discard {
+    justify-content: space-between;
+  }
+
+  .naming {
+    font-weight: bold;
+    display: contents;
+  }
+
+  .rank .naming {
+    width: 100%;
+  }
+
+  .discard .naming {
+    width: 30%;
+  }
+
+  .indicator {
+    display: none;
+  }
+
+  .discard input {
+    margin-left: 16px;
+  }
+}
