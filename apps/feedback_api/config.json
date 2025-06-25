@@ -1,0 +1,8 @@
+{
+    "database": {
+        "name": "translations.db",
+        "folder": "data",
+        "root": "feedback_api",
+        "example": "assets/example_data.json"
+    }
+}

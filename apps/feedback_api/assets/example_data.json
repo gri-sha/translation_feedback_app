@@ -1,0 +1,143 @@
+{
+    "targets": [
+        {
+            "id": 1,
+            "context1": "Harry had never been to London before.",
+            "target": "Although Hagrid seemed to know where he was going, he was obviously not used to getting there in an ordinary way.",
+            "context2": "He got stuck in the ticket barrier on the Underground, and complained loudly that the seats were too small and the trains too slow."
+        },
+        {
+            "id": 2,
+            "context1": "A few old women were sitting in a corner, drinking tiny glasses of sherry.",
+            "target": "One of them was smoking a long pipe.",
+            "context2": "A little man in a top hat was talking to the old bartender, who was quite bald and looked like a toothless walnut."
+        },
+        {
+            "id": 3,
+            "context1": "Harry stared as Dumbledore sidled back into the picture on his card and gave him a small smile.",
+            "target": "Ron was more interested in eating the frogs than looking at the Famous Witches and Wizards cards, but Harry couldn’t keep his eyes off them.",
+            "context2": "Soon he had not only Dumbledore and Morgana, but Hengist of Woodcroft, Alberic Grunnion, Circe, Paracelsus, and Merlin."
+        }
+    ],
+    "translations": [
+        {
+            "id": 1,
+            "targetId": 1,
+            "translation": "Bien que Hagrid semblât savoir où il allait, il n’avait visiblement pas l’habitude d’y aller de manière ordinaire.",
+            "model": "ERIC_Lab"
+        },
+        {
+            "id": 2,
+            "targetId": 1,
+            "translation": "Même si Hagrid semblait savoir où il allait, il était clair qu’il n’avait pas l’habitude de s’y rendre de façon ordinaire.",
+            "model": "DeepL"
+        },
+        {
+            "id": 3,
+            "targetId": 1,
+            "translation": "Hagrid semblait savoir où il allait, mais il n’était clairement pas habitué à s’y rendre de manière normale.",
+            "model": "ChatGPT"
+        },
+        {
+            "id": 4,
+            "targetId": 2,
+            "translation": "L’un d’eux fumait une longue pipe.",
+            "model": "ERIC_Lab"
+        },
+        {
+            "id": 5,
+            "targetId": 2,
+            "translation": "L’un d’eux était en train de fumer une longue pipe",
+            "model": "DeepL"
+        },
+        {
+            "id": 6,
+            "targetId": 2,
+            "translation": "L’un d’entre eux fumait une pipe longue",
+            "model": "ChatGPT"
+        },
+        {
+            "id": 7,
+            "targetId": 3,
+            "translation": "Ron s’intéressait plus à manger les grenouilles qu’à regarder les cartes de Sorciers et Sorcières Célèbres, mais Harry ne pouvait pas en détacher les yeux.",
+            "model": "ERIC_Lab"
+        },
+        {
+            "id": 8,
+            "targetId": 3,
+            "translation": "Ron était plus intéressé par les grenouilles que par les cartes des Sorciers et Sorcières Célèbres, tandis que Harry ne pouvait les quitter des yeux.",
+            "model": "DeepL"
+        },
+        {
+            "id": 9,
+            "targetId": 3,
+            "translation": "Ron préférait manger les grenouilles plutôt que de regarder les cartes de Sorciers Célèbres, mais Harry ne pouvait pas s’en détacher.",
+            "model": "ChatGPT"
+        }
+    ],
+    "rankings": [
+        {
+            "id": 1,
+            "evalId": 1,
+            "translationId": 1,
+            "rank": 1,
+            "discarded": false
+        },
+        {
+            "id": 2,
+            "evalId": 1,
+            "translationId": 2,
+            "rank": 2,
+            "discarded": false
+        },
+        {
+            "id": 3,
+            "evalId": 1,
+            "translationId": 3,
+            "rank": 0,
+            "discarded": true
+        },
+        {
+            "id": 4,
+            "evalId": 2,
+            "translationId": 4,
+            "rank": 2,
+            "discarded": false
+        },
+        {
+            "id": 5,
+            "evalId": 2,
+            "translationId": 5,
+            "rank": 1,
+            "discarded": false
+        },
+        {
+            "id": 6,
+            "evalId": 2,
+            "translationId": 6,
+            "rank": 3,
+            "discarded": false
+        },
+        {
+            "id": 7,
+            "evalId": 3,
+            "translationId": 7,
+            "rank": 2,
+            "discarded": false
+        },
+        {
+            "id": 8,
+            "evalId": 3,
+            "translationId": 8,
+            "rank": 0,
+            "discarded": true
+        },
+        {
+            "id": 9,
+            "evalId": 3,
+            "translationId": 9,
+            "rank": 1,
+            "discarded": false
+        }
+    ]
+}
