@@ -24,55 +24,64 @@
             "id": 1,
             "targetId": 1,
             "translation": "Bien que Hagrid semblât savoir où il allait, il n’avait visiblement pas l’habitude d’y aller de manière ordinaire.",
-            "model": "ERIC_Lab"
+            "model": "ERIC_Lab",
+            "numEvals": 1
         },
         {
             "id": 2,
             "targetId": 1,
             "translation": "Même si Hagrid semblait savoir où il allait, il était clair qu’il n’avait pas l’habitude de s’y rendre de façon ordinaire.",
-            "model": "DeepL"
+            "model": "DeepL",
+            "numEvals": 1
         },
         {
             "id": 3,
             "targetId": 1,
             "translation": "Hagrid semblait savoir où il allait, mais il n’était clairement pas habitué à s’y rendre de manière normale.",
-            "model": "ChatGPT"
+            "model": "ChatGPT",
+            "numEvals": 1
         },
         {
             "id": 4,
             "targetId": 2,
             "translation": "L’un d’eux fumait une longue pipe.",
-            "model": "ERIC_Lab"
+            "model": "ERIC_Lab",
+            "numEvals": 1
         },
         {
             "id": 5,
             "targetId": 2,
             "translation": "L’un d’eux était en train de fumer une longue pipe",
-            "model": "DeepL"
+            "model": "DeepL",
+            "numEvals": 1
         },
         {
             "id": 6,
             "targetId": 2,
             "translation": "L’un d’entre eux fumait une pipe longue",
-            "model": "ChatGPT"
+            "model": "ChatGPT",
+            "numEvals": 1
         },
         {
             "id": 7,
             "targetId": 3,
             "translation": "Ron s’intéressait plus à manger les grenouilles qu’à regarder les cartes de Sorciers et Sorcières Célèbres, mais Harry ne pouvait pas en détacher les yeux.",
-            "model": "ERIC_Lab"
+            "model": "ERIC_Lab",
+            "numEvals": 1
         },
         {
             "id": 8,
             "targetId": 3,
             "translation": "Ron était plus intéressé par les grenouilles que par les cartes des Sorciers et Sorcières Célèbres, tandis que Harry ne pouvait les quitter des yeux.",
-            "model": "DeepL"
+            "model": "DeepL",
+            "numEvals": 1
         },
         {
             "id": 9,
             "targetId": 3,
             "translation": "Ron préférait manger les grenouilles plutôt que de regarder les cartes de Sorciers Célèbres, mais Harry ne pouvait pas s’en détacher.",
-            "model": "ChatGPT"
+            "model": "ChatGPT",
+            "numEvals": 1
         }
     ],
     "rankings": [

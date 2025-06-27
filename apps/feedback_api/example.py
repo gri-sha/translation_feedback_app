@@ -1,8 +1,7 @@
 from flask import Flask, jsonify, request
 import sqlite3
 from pprint import pprint
-from util.db import DBManager
-from util.loader import DataLoader
+from util import DBManager, DataLoader
 
 if __name__ == "__main__":
     db = DBManager()
