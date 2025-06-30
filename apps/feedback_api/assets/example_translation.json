@@ -1,0 +1,17 @@
+[
+  {
+    "targetId": 4,
+    "translation": "Il frissonna et se retourna, essayant de se mettre à l’aise, le ventre grondant de faim.",
+    "model": "ERIC_Lab"
+  },
+  {
+    "targetId": 4,
+    "translation": "Il grelottait et se tourna dans son lit, cherchant une position confortable, le ventre creux.",
+    "model": "DeepL"
+  },
+  {
+    "targetId": 4,
+    "translation": "Il frissonna, se retourna pour trouver une position confortable, son estomac gargouillant de faim.",
+    "model": "ChatGPT"
+  }
+]

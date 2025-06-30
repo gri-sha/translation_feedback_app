@@ -1,0 +1,12 @@
+[
+  {
+    "context1": "Harry couldn’t sleep",
+    "target": "He shivered and turned over, trying to get comfortable, his stomach rumbling with hunger",
+    "context2": "Dudley’s snores were drowned by the low rolls of thunder that started near midnight."
+  },
+  {
+    "context1": "Hagrid was so huge that he parted the crowd easily; all Harry had to do was keep close behind him.",
+    "target": "They passed book shops and music stores, hamburger restaurants and cinemas, but nowhere that looked as if it could sell you a magic wand.",
+    "context2": "This was just an ordinary street full of ordinary people."
+  }
+]

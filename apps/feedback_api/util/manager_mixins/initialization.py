@@ -60,7 +60,7 @@ class InitMixin:
                 """
                 )
 
-                # Performance indexes
+                # Indexes
                 cursor.execute(
                     "CREATE INDEX idx_translations_target_id ON Translations(targetId)"
                 )
@@ -77,7 +77,11 @@ class InitMixin:
                     "CREATE INDEX idx_translations_evals_target ON Translations(numEvals, targetId, id)"
                 )
 
-                # Triggers to maintain numEvals consistency
+                cursor.execute(
+                    "CREATE UNIQUE INDEX idx_unique_ranks_per_eval ON Rankings(evalId, rank) WHERE discarded = FALSE;"
+                )
+
+                # Triggers 
                 cursor.execute(
                     """
                     CREATE TRIGGER update_translation_evals_insert
@@ -111,6 +115,7 @@ class InitMixin:
                     END
                 """
                 )
+
 
             print("Database schema initialized successfully.")
             return True
