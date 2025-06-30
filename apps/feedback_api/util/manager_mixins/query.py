@@ -15,25 +15,20 @@ class QueryMixin:
                 cursor.execute(
                     """
                     SELECT 
-                        t.id,
-                        t.targetId,
-                        t.translation,
-                        t.model,
-                        COUNT(r.id) as numEvals,
-                        tar.target,
-                        tar.context1,
-                        tar.context2
-                    FROM Translations t
-                    LEFT JOIN Rankings r ON t.id = r.translationId
-                    JOIN Targets tar ON t.targetId = tar.id
-                    GROUP BY t.id, t.targetId, t.translation, t.model, tar.target, tar.context1, tar.context2
-                    ORDER BY numEvals ASC, t.id ASC
+                        id,
+                        targetId,
+                        translation,
+                        model,
+                        numEvals
+                    FROM Translations
+                    ORDER BY numEvals ASC, id ASC
                     LIMIT 1
                 """
                 )
 
                 result = cursor.fetchone()
-                return dict(result) if result else None
+                print(result)
+                return self._translation_to_dict(result) if result else None
 
         except Exception as e:
             print(f"Error getting least evaluated translation: {e}")
@@ -94,6 +89,19 @@ class QueryMixin:
         except Exception as e:
             print(f"Error adding translations: {e}")
             return False
+    
+    def _translation_to_dict(self, translation: tuple) -> Optional[dict]:
+        try:
+            res = {}
+            res["id"] = translation[0]
+            res["targetId"] = translation[1]
+            res["translation"] = translation[2]
+            res["model"] = translation[3]
+            res["numEval"] = translation[4]
+            return res if res else None
+        except Exception as e:
+            print(f"Error creating dict from a row: {e}")
+            return None
 
     def _validate_rankings(self, options_ranking: list[dict]) -> None:
         # Uniqueness of ranks is verified by db index, so here only translations are verified

@@ -17,9 +17,9 @@ if __name__ == "__main__":
     with open("assets/example_eval_false.json") as f:
         example_eval_2 = json.load(f)
 
-    db.add_evaluation(example_eval_1)
-    db.add_evaluation(example_eval_2)
-    db.add_evaluation({})
+    # db.add_evaluation(example_eval_1)
+    # db.add_evaluation(example_eval_2)
+    # db.add_evaluation({})
 
     with open("assets/example_target.json") as f:
         example_targets = json.load(f)
@@ -44,6 +44,8 @@ if __name__ == "__main__":
         cursor.execute("SELECT * from Rankings")
         data["rankings"] = cursor.fetchall()
 
-    for key, value in data.items():
-        print(f"\n{key.upper()}:")
-        pprint(value)
+    # for key, value in data.items():
+    #     print(f"\n{key.upper()}:")
+    #     pprint(value)
+
+    print(db.get_least_evaluated_translation())
