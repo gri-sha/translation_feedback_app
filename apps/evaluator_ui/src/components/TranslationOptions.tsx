@@ -6,8 +6,16 @@ type OptionState = {
   discarded: boolean;
 };
 
+type TranslationData = {
+  id: number;
+  targetId: number;
+  translation: string;
+  model: string;
+  numEvals: number;
+}
+
 type TranslationOptionsProps = {
-  options: string[];
+  options: TranslationData[];
   optionStates: OptionState[];
   setOptionStates: (states: React.SetStateAction<OptionState[]>) => void;
 };
@@ -100,7 +108,7 @@ export default function TranslationOptions({
         <tbody>
           {options.map((option, index) => (
             <tr key={index} className={styles.tr}>
-              <td className={`${styles.td} ${styles.option}`}>{option}</td>
+              <td className={`${styles.td} ${styles.option}`}>{option.translation}</td>
               <td className={`${styles.td} ${styles.rank}`}>
                 {optionStates[index].discarded ? (
                   <span className={`${styles.indicator}`}>Discarded</span>

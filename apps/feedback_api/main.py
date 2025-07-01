@@ -1,27 +1,28 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import json
 import os
 from util import DBManager, DataLoader
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
+
 db = DBManager()
 
 
 @app.route("/get_target", methods=["GET"])
-def get_phrase():
-    res = db.get_least_evaluated_translation()
-    if res:
-        return jsonify({"response": res}), 200
-    return jsonify({"response": None}), 200
+def get_target_with_trnalsations():
+    res = db.get_target_with_translations()
+    return jsonify(res), 200
 
 
 @app.route("/submit_evaluation", methods=["POST"])
 def submit_evaluation():
     data = request.get_json()
-    if not data or "rankings" not in data:
+    if not data:
         return jsonify({"error": "Missing rankings"}), 400
 
-    success = db.add_evaluation(data["rankings"])
+    success = db.add_evaluation(data)
     if success:
         return jsonify({"message": "Evaluation submitted successfully"}), 200
     else:

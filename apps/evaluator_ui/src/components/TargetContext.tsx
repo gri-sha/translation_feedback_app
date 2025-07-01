@@ -13,9 +13,9 @@ export default function TargetContext({
     <>
       <h1 style={{marginBottom: "8px"}}>Target :</h1>
       <div>
-        <span>{context1}</span>
+        <span>{context1} </span>
         <span style={{background:"yellow"}}>{target}</span>
-        <span>{context2}</span>
+        <span> {context2}</span>
       </div>
     </>
   );

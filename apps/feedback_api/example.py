@@ -1,7 +1,6 @@
-import sqlite3
 import json
 from pprint import pprint
-from util import DBManager, DataLoader
+from util import DBManager
 
 if __name__ == "__main__":
     db = DBManager()
@@ -17,9 +16,9 @@ if __name__ == "__main__":
     with open("assets/example_eval_false.json") as f:
         example_eval_2 = json.load(f)
 
-    # db.add_evaluation(example_eval_1)
-    # db.add_evaluation(example_eval_2)
-    # db.add_evaluation({})
+    db.add_evaluation(example_eval_1)
+    db.add_evaluation(example_eval_2)
+    db.add_evaluation({})
 
     with open("assets/example_target.json") as f:
         example_targets = json.load(f)
@@ -31,21 +30,21 @@ if __name__ == "__main__":
     db.add_translations(example_translations)
 
 
-    with db.read_only() as cursor:
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        data["tables"] = cursor.fetchall()
+    # with db.read_only() as cursor:
+    #     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    #     data["tables"] = cursor.fetchall()
 
-        cursor.execute("SELECT * from Targets")
-        data["targets"] = cursor.fetchall()
+    #     cursor.execute("SELECT * from Targets")
+    #     data["targets"] = cursor.fetchall()
 
-        cursor.execute("SELECT * from Translations")
-        data["translations"] = cursor.fetchall()
+    #     cursor.execute("SELECT * from Translations")
+    #     data["translations"] = cursor.fetchall()
 
-        cursor.execute("SELECT * from Rankings")
-        data["rankings"] = cursor.fetchall()
+    #     cursor.execute("SELECT * from Rankings")
+    #     data["rankings"] = cursor.fetchall()
 
     # for key, value in data.items():
     #     print(f"\n{key.upper()}:")
     #     pprint(value)
 
-    print(db.get_least_evaluated_translation())
+    pprint(db.get_target_with_translations())

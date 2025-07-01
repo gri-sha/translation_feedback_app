@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import TranslationOptions from "./components/TranslationOptions";
 import TargetContext from "./components/TargetContext";
 import Continue from "./components/Continue";
@@ -8,26 +8,51 @@ type OptionState = {
   discarded: boolean;
 };
 
-const targetContextData = {
-  context1:
-    "The first computer program is generally dated to 1843 when mathematician Ada Lovelace published an algorithm to calculate a sequence of Bernoulli numbers, intended to be carried out by Charles Babbage's Analytical Engine. ",
-  target:
-    "The algorithm, which was conveyed through notes on a translation of Luigi Federico Menabrea's paper on the analytical engine was mainly conceived by Lovelace as can be discerned through her correspondence with Babbage.",
-  context2:
-    " However, Charles Babbage himself had written a program for the AE in 1837. Lovelace was also the first to see a broader application for the analytical engine beyond mathematical calculations.",
+type TargetContextData = {
+  id: number;
+  context1: string;
+  target: string;
+  context2: string;
 };
 
-const translations = [
-  "L'algorithme, qui fut transmis par le biais de notes sur une traduction de l'article de Luigi Federico Menabrea concernant la machine analytique, fut principalement conçu par Lovelace, comme on peut le discerner à travers sa correspondance avec Babbage.",
-  "Cet algorithme, communiqué dans des notes accompagnant une traduction du mémoire de Luigi Federico Menabrea sur la machine analytique, fut essentiellement l'œuvre de Lovelace, ainsi qu'en témoigne sa correspondance avec Babbage.",
-  "L'algorithme, présenté dans des notes sur une traduction de l'article de Luigi Federico Menabrea relatif à la machine analytique, était principalement le fruit de la conception de Lovelace, comme le révèle sa correspondance avec Babbage.",
-  "L'algorithme, exposé à travers des notes sur une traduction du texte de Luigi Federico Menabrea portant sur la machine analytique, fut avant tout conçu par Lovelace elle-même, ce que confirme sa correspondance avec Babbage.",
-];
+type TranslationData = {
+  id: number;
+  targetId: number;
+  translation: string;
+  model: string;
+  numEvals: number;
+};
+
+type EvaluationData = {
+  translationId: number;
+  rank: number;
+  discarded: boolean;
+};
 
 function App() {
-  const [optionStates, setOptionStates] = useState<OptionState[]>(
-    translations.map(() => ({ rank: 0, discarded: false }))
-  );
+  const [targetContextData, setTargetContextData] =
+    useState<TargetContextData | null>(null);
+  const [translations, setTranslations] = useState<TranslationData[]>([]);
+  const [optionStates, setOptionStates] = useState<OptionState[]>([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/get_target");
+      const data = await response.json();
+      console.log(data);
+      setTargetContextData(data.target);
+      setTranslations(data.translations);
+      setOptionStates(
+        data.translations.map(() => ({ rank: 0, discarded: false }))
+      );
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const isComplete = useMemo(() => {
     return !optionStates.some(
@@ -35,13 +60,52 @@ function App() {
     );
   }, [optionStates]);
 
-  const saveSelections = () => {
+  const submitEvaluation = async (): Promise<void> => {
     if (isComplete) {
-      console.log("Selected translations:", optionStates);
+      const response: EvaluationData[] = [];
+
+      for (let i = 0; i < translations.length; i++) {
+        response.push({
+          translationId: translations[i].id,
+          rank: optionStates[i].rank,
+          discarded: optionStates[i].discarded,
+        });
+      }
+
+      console.log(response)
+
+      try {
+        const res = await fetch("http://127.0.0.1:5000/submit_evaluation", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(response),
+        });
+
+        if (res.ok) {
+          const result = await res.json();
+          console.log(result.message);
+          fetchData();
+        } else {
+          const error = await res.json();
+          console.error("Error:", error.error);
+        }
+      } catch (err) {
+        console.error("Network error:", err);
+      }
     } else {
       console.log("NOT COMPLETE");
     }
   };
+
+  if (
+    !targetContextData ||
+    translations.length === 0 ||
+    optionStates.length === 0
+  ) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container">
@@ -54,7 +118,7 @@ function App() {
           optionStates={optionStates}
           setOptionStates={setOptionStates}
         />
-        <Continue isComplete={isComplete} onClick={saveSelections} />
+        <Continue isComplete={isComplete} onClick={submitEvaluation} />
       </div>
     </div>
   );
